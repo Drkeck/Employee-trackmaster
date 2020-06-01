@@ -1,22 +1,28 @@
+DROP DATABASE IF EXISTS employee_managerDB;
+DROP TABLE IF EXISTS department;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS employee;
+
+CREATE DATABASE employee_managerDB;
+
+USE employee_managerDB;
+
 CREATE TABLE department (
-    dep_id INTEGER PRIMARY KEY,
-    dep_name VARCHAR(30)
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    department_name VARCHAR(30) NOT NULL
 );
 
-CREATE TABLE role (
-    role_id INTEGER PRIMARY KEY,
+CREATE TABLE roles (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
     salary DECIMAL,
-    dep_id INTEGER UNSIGNED,
-    CONSTRAINT fk_depID FOREIGN KEY (dep_id) REFERENCES department(dep_id) 
+    department_id INTEGER UNSIGNED
 );
 
 CREATE TABLE employee (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
-    role_id INTEGER UNSIGNED
-    dep_id INTEGER UNSIGNED
-    CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES role(role_id),
-    CONSTRAINT fk_dep FOREIGN KEY (dep_id) REFERENCES department(dep_id)
+    manager VARCHAR(30),
+    roles_id INTEGER UNSIGNED
 );

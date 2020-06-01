@@ -1,11 +1,11 @@
-INSERT INTO department (dep_name)
+ INSERT INTO department (department_name)
 VALUES
     ('TEST DEPARTMENT');
 
-INSERT INTO role (title, salery, dep_id)
+INSERT INTO roles (title, salary, department_id)
 VALUES
     ('test role', 120000, 1);
 
-INSERT INTO employee (first_name, last_name, role_id, dep_id)
+INSERT INTO employee (first_name, last_name, manager, roles_id)
 VALUES
-    ('alex', 'keckley', 1, 1);
+    ('alex', 'keckley', 'test manager', 1);
