@@ -2,7 +2,7 @@ const inquirer = require('inquirer');
 const mysql = require('mysql2');
 const cTable = require('console.table');
 const db = require('./db/connection');
-const s = require('./utils/');
+const {addDepartment, addEmployee, addRole} = require('./utils/add');
 
 db.connect(err => {
     if (err) throw err;
@@ -18,7 +18,7 @@ db.connect(err => {
 
 });
 
-initializeList = (list) => {
+const initializeList = (list) => {
     db.query(list, function (err, res) {
             if (err) throw err;
 
@@ -80,7 +80,7 @@ function initialQuery() {
                 initializeList(sql);
             }
             if (choices === "Add new department") {
-                //f
+                addDepartment();
             }
             if (choices === "Add new roles") {
                 //f
@@ -96,5 +96,4 @@ function initialQuery() {
                 db.end();
             }
         })
-
 };
