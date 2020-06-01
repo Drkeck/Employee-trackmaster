@@ -52,8 +52,9 @@ const updateEmployeeRole = () => {
                     =====================
 
                     `)
-                    return;
+                    
                 })
+                return;
             })
         })
     })

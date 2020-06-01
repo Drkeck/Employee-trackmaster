@@ -30,10 +30,11 @@ const addDepartment = () => {
             ================
 
             `);
-            return rows;
+        
         })
+        
     })
-    
+    return
 };
 
 const addRole = () => {
@@ -74,10 +75,11 @@ const addRole = () => {
             role added
             ==========
             `);
-            return rows;
+            
         })
+        
     })
-    
+    return
 };
 
 const addEmployee = () => {
@@ -129,10 +131,11 @@ const addEmployee = () => {
             role added
             ==========
             `);
-            return rows;
+            
         })
+        
     })
-    
+    return;
 };
 
 
