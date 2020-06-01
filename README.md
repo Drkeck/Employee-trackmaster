@@ -14,7 +14,7 @@ many of this project was coded under node.js with utilization from SQL/MYSQL as 
 clone the repo!
 
 
-Unfortuantly due to deadlines you will have to open mysql and source the sql files.
+Unfortunately due to deadlines you will have to open mysql and source the sql files.
 
 run npm install
 
