@@ -106,9 +106,9 @@ const addEmployee = () => {
                 }
             },
             {
-                type: "text",
+                type: "number",
                 name: "manager",
-                message: "Who's this employee's manager?",
+                message: "Who's this employee's manager by manager ID?",
             },
             {
                 type: "text",
@@ -119,7 +119,7 @@ const addEmployee = () => {
     )
     .then((ans) => {
         console.log(ans.firstName, ans.lastName, ans.manager, ans.roleID);
-        const sql = `INSERT INTO employee (first_name, last_name, manager, role_id)
+        const sql = `INSERT INTO employee (first_name, last_name, manager_id, role_id)
                     VALUES (?,?,?,?)`
         const params = [ans.firstName, ans.lastName, ans.manager, ans.roleID];
         db.query(sql, params, function(err, rows) {

@@ -1,10 +1,10 @@
 const inquirer = require('inquirer');
-const mysql = require('mysql2');
 const cTable = require('console.table');
 const db = require('./db/connection');
-const {addDepartment, addEmployee, addRole} = require('./utils/add');
+const { addDepartment, addEmployee, addRole } = require('./utils/add');
+const { updateEmployeeRole, updateEmployeeManager } = require('./utils/update');
 
-const sqlBaseline = `SELECT first_name, last_name, manager, title, salary, department_name
+const sqlBaseline = `SELECT first_name, last_name, manager_id, title, salary, department_name
 FROM employee
 JOIN roles ON employee.roles_id = roles.id
 JOIN department ON roles.department_id = department.id`
@@ -13,23 +13,17 @@ db.connect(err => {
     if (err) throw err;
     console.log('connected as id ' + db.threadId);
     console.log("welcome to employee taskmaster.");
-
-    const sql = `SELECT first_name, last_name, manager, title, salary, department_name
-    FROM employee
-    JOIN roles ON employee.roles_id = roles.id
-    JOIN department ON roles.department_id = department.id;`
-
-    initializeList(sql)
+    initializeList(sqlBaseline)
 
 });
 
 const initializeList = (list) => {
     db.query(list, function (err, res) {
-            if (err) throw err;
+        if (err) throw err;
 
-            console.table(res);
-            initialQuery();
-        }
+        console.table(res);
+        initialQuery();
+    }
     )
 }
 
@@ -46,14 +40,14 @@ function initialQuery() {
                 "Add new department",
                 "Add new roles",
                 "Add new employee",
-                "update an employee's roll",
+                "Update an employee's roll",
                 "Exit"
             ]
         }
     ])
         .then((answer) => {
             const { choices } = answer;
-            
+
             if (choices === "View all departments") {
 
                 console.log('this is what i could find on our departments:');
@@ -71,7 +65,7 @@ function initialQuery() {
                             JOIN department 
                             ON roles.department_id = department.id`;
 
-                initializeList(sql);            
+                initializeList(sql);
             }
             if (choices === "View all employees") {
 
@@ -87,8 +81,8 @@ function initialQuery() {
             if (choices === "Add new employee") {
                 addEmployee();
             }
-            if (choices === "update employee's roll") {
-                //s
+            if (choices === "Update an employee's roll") {
+                updateEmployeeRole();
             }
             if (choices === "Exit") {
                 console.log('goodbye');
