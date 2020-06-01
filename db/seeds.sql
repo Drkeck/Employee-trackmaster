@@ -1,11 +1,19 @@
- INSERT INTO department (department_name)
+INSERT INTO department (department_name)
 VALUES
-    ('TEST DEPARTMENT');
+    ('Software engineering'),
+    ('Server Staff'),
+    ('Front office');
 
 INSERT INTO roles (title, salary, department_id)
 VALUES
-    ('test role', 120000, 1);
+    ('Programer', 70000, 1),
+    ('Server manager', 100000, 2),
+    ('Front desk', 50000, 3);
 
 INSERT INTO employee (first_name, last_name, manager_id, roles_id)
 VALUES
-    ('alex', 'keckley', NULL , 1);
+    ('Alex', 'Keckley', NULL , 1),
+    ('Jason', 'Debri', 1, 1),
+    ('Alison', 'Vaus', NULL, 2),
+    ('Eric', 'Davon', 1, 3),
+    ('Sherry', 'Thomas', 4, 3);

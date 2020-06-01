@@ -4,7 +4,7 @@ const CTable = require('console.table');
 const { addDepartment, addEmployee, addRole } = require('./add');
 const { updateEmployeeRole, updateEmployeeManager } = require('./update');
 
-const sqlBaseline = `SELECT first_name, last_name, manager_id, title, salary, department_name
+const sqlBaseline = `SELECT *
 FROM employee
 JOIN roles ON employee.roles_id = roles.id
 JOIN department ON roles.department_id = department.id`
