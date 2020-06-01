@@ -4,6 +4,11 @@ const cTable = require('console.table');
 const db = require('./db/connection');
 const {addDepartment, addEmployee, addRole} = require('./utils/add');
 
+const sqlBaseline = `SELECT first_name, last_name, manager, title, salary, department_name
+FROM employee
+JOIN roles ON employee.roles_id = roles.id
+JOIN department ON roles.department_id = department.id`
+
 db.connect(err => {
     if (err) throw err;
     console.log('connected as id ' + db.threadId);
@@ -71,22 +76,16 @@ function initialQuery() {
             if (choices === "View all employees") {
 
                 console.log('I have the list of all our recorded employees');
-
-                let sql = `SELECT first_name, last_name, manager, title, salary, department_name
-                FROM employee
-                JOIN roles ON employee.roles_id = roles.id
-                JOIN department ON roles.department_id = department.id`;
-
-                initializeList(sql);
+                initializeList(sqlBaseline);
             }
             if (choices === "Add new department") {
                 addDepartment();
             }
             if (choices === "Add new roles") {
-                //f
+                addRole();
             }
             if (choices === "Add new employee") {
-                //f
+                addEmployee();
             }
             if (choices === "update employee's roll") {
                 //s
